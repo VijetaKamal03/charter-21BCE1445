@@ -1,0 +1,37 @@
+Signature Verification System
+This project implements a Signature Verification system that supports multiple signature schemes (ECDSA and Schnorr) to validate cryptographic signatures. It includes gas optimization techniques and error handling, and can easily be extended to include other signature schemes.
+
+Features
+Signature Scheme Identification: Takes schemeType as a parameter to dynamically determine how the v, r, and s components are handled.
+Signature Verification: Verifies ECDSA and Schnorr signatures through modular arithmetic or elliptic curve operations, returning a true/false result.
+Gas Optimization: Uses early exits and efficient arithmetic operations to reduce computation costs.
+Error Handling and Logging: The SignatureVerifier class provides detailed feedback for easier debugging.
+Testing Suite: Includes example usage for testing both ECDSA and Schnorr verification.
+Dependencies
+Python 3.7+
+ecdsa library for elliptic curve operations:
+
+pip install ecdsa
+Standard Python libraries: abc, dataclasses, typing, hashlib
+Project Structure
+SignatureVerifier Class: Manages verification for multiple schemes and provides error handling and logging.
+Signature Scheme Classes: ECDSAScheme and SchnorrScheme classes inherit from the SignatureScheme abstract class to define specific verification methods.
+Signature Data Class: Represents the v, r, and s values for each signature.
+Signature Schemes Supported
+ECDSA Verification
+Uses SECP256k1 curve, common in blockchain technology.
+Reconstructs the public key from signature components.
+Verifies using elliptic curve operations and handles potential errors.
+Schnorr Verification
+Implements a simplified Schnorr signature verification.
+Calculates the challenge using SHA-256 and verifies components are within valid ranges.
+Code Overview
+Classes
+Signature: Data class representing the v, r, and s components of a signature.
+SignatureScheme: Abstract class for defining a signature verification scheme.
+ECDSAScheme: Implements ECDSA verification using SECP256k1.
+SchnorrScheme: Implements simplified Schnorr signature verification.
+SignatureVerifier: Main class that manages multiple schemes and provides verification and error handling.
+Functions
+verify: Verifies a signature based on the provided schemeType.
+parse_signature: Parses v, r, and s from the signature byte array.
